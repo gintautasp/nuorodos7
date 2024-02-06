@@ -8,31 +8,22 @@
 		public function tikrintiUzklausuDuomenis() {
 		}		
 	
-		public function patikrinkArAtsiustaNaujaNuoroda() {
+		public function arAtsiustaNaujaNuoroda() {
 		}
 	
-		public function patikrinkArAtsiustaPakoreguotaNuoroda() {
+		public function arAtsiustaPakoreguotaNuoroda() {
 		}
 		
 		public function issaugotiNuoroda() {
 		}
 
-		public function patikrinkArNurodytaSalinamaNuoroda() {
+		public function arNurodytaSalinamaNuoroda() {
 		}
 		
 		public function pasalintiNuoroda() {
 		}
 	
-		public function patikrinkArUzduotiPaieskosKriterijai() {
-		}
-		
-		public function pasiimtiPaieskosKriterijus() {
-		}
-		
-		public function atrinkNuorodasPagalPaieskosKriterijus() {
-		}
-		
-		public function  atrinkNuorodas() {
+		public function arUzduotiPaieskosKriterijai() {
 		}
 		
 		public function gautiDuomenis() {

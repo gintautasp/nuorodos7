@@ -29,31 +29,24 @@
 	
 	$nuorodu_sistema = new NuoroduSistema();
 	
-	if ( $nuorodu_sistema -> patikrinkArAtsiustaNaujaNuoroda() ) {
+	$nuorodu_sistema -> tikrintiUzklausuDuomenis();
+	
+	if ( $nuorodu_sistema -> arAtsiustaNaujaNuoroda() ) {
 	
 		$nuorodu_sistema -> issaugotiNuoroda();
 	}
 	
-	if ( $nuorodu_sistema -> patikrinkArAtsiustaPakoreguotaNuoroda() ) {
+	if ( $nuorodu_sistema -> arAtsiustaPakoreguotaNuoroda() ) {
 	
 		$nuorodu_sistema -> issaugotiNuoroda();
 	}
 
-	if ( $nuorodu_sistema -> patikrinkArNurodytaSalinamaNuoroda() ) {
+	if ( $nuorodu_sistema -> arNurodytaSalinamaNuoroda() ) {
 	
 		$nuorodu_sistema -> pasalintiNuoroda();
 	}
 	
-	if ( $nuorodu_sistema -> patikrinkArUzduotiPaieskosKriterijai() ) {
-	
-		$nuorodu_sistema -> pasiimtiPaieskosKriterijus();
-		
-		$nuorodu_sistema -> atrinkNuorodasPagalPaieskosKriterijus();
-		
-	} else {
-	
-		$nuorodu_sistema -> atrinkNuorodas();
-	}
+	$nuorodu_sistema -> gautiDuomenis();
 	
 	include 'main.html.php';
 		
