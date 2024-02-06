@@ -24,7 +24,17 @@
 		jei neuždavė
 
 			nuorodų sistema pasiimk pradinį nuorodų sarašą
-	*/	
+	*/
+	$dir_bendram = realpath ( __DIR__ . '/../bendram' ) . '/';
+	
+	include $dir_bendram . 'duomenu_baze.class.php';
+	
+	$db = new DuomenuBaze ( 'nuorodos7' );
+	
+	include $dir_bendram . 'model_db.class.php';
+	include $dir_bendram . 'model_db_irasas.class.php';	
+	
+	include $dir_bendram . 'controller.class.php';
 	include 'class/nuorodu_sistema.php';
 	
 	$nuorodu_sistema = new NuoroduSistema();

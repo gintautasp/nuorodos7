@@ -193,9 +193,9 @@
 <label>Aprašymas</label>
 <textarea name="aprasymas" id="aprasymas"></textarea>
 <input type="hidden" name="id_nuorodos" id="id_nuorodos" value="0">
-<input type="submit" id="ieskoti_detaliai" class="formos_veiksmai" value="Ieškoti">
-<input type="submit" id="salinti" class="formos_veiksmai" value="Šalinti">
-<input type="submit" id="saugoti" class="formos_veiksmai" value="Saugoti">
+<input type="submit" id="ieskoti_detaliai" name="ieskoti_detaliai" class="formos_veiksmai" value="Ieškoti">
+<input type="submit" id="salinti" name="salinti" class="formos_veiksmai" value="Šalinti">
+<input type="submit" id="saugoti" name="saugoti" class="formos_veiksmai" value="Saugoti">
 </form>
 </section>
 <section id="nuorodu_sarasas">
