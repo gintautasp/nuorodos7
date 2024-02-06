@@ -1,6 +1,5 @@
 <?php
 
-	echo 'pradedam realizuoti serverio (back-end) dalį';
 	/*
 	nuorodų sistema patikrink ar vartotojas atsiuntė naują nuorodą
 	
@@ -26,5 +25,35 @@
 
 			nuorodų sistema pasiimk pradinį nuorodų sarašą
 	*/	
+	include 'class/nuorodu_sistema.php';
 	
+	$nuorodu_sistema = new NuoroduSistema();
+	
+	if ( $nuorodu_sistema -> patikrinkArAtsiustaNaujaNuoroda() ) {
+	
+		$nuorodu_sistema -> issaugotiNuoroda();
+	}
+	
+	if ( $nuorodu_sistema -> patikrinkArAtsiustaPakoreguotaNuoroda() ) {
+	
+		$nuorodu_sistema -> issaugotiNuoroda();
+	}
+
+	if ( $nuorodu_sistema -> patikrinkArNurodytaSalinamaNuoroda() ) {
+	
+		$nuorodu_sistema -> pasalintiNuoroda();
+	}
+	
+	if ( $nuorodu_sistema -> patikrinkArUzduotiPaieskosKriterijai() ) {
+	
+		$nuorodu_sistema -> pasiimtiPaieskosKriterijus();
+		
+		$nuorodu_sistema -> atrinkNuorodasPagalPaieskosKriterijus();
+		
+	} else {
+	
+		$nuorodu_sistema -> atrinkNuorodas();
+	}
+	
+	include 'main.html.php';
 		
