@@ -32,7 +32,8 @@
 	$db = new DuomenuBaze ( 'nuorodos7' );
 	
 	include $dir_bendram . 'model_db.class.php';
-	include $dir_bendram . 'model_db_irasas.class.php';	
+	include $dir_bendram . 'model_db_irasas.class.php';
+	include 'class/nuoroda.php';	
 	
 	include $dir_bendram . 'controller.class.php';
 	include 'class/nuorodu_sistema.php';
@@ -42,6 +43,8 @@
 	$nuorodu_sistema -> tikrintiUzklausuDuomenis();
 	
 	if ( $nuorodu_sistema -> arAtsiustaNaujaNuoroda() ) {
+	
+		// die ( "nuoroda atsiųsta" );
 	
 		$nuorodu_sistema -> issaugotiNuoroda();
 	}

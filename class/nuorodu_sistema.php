@@ -13,13 +13,13 @@
 		public function arAtsiustaNaujaNuoroda() {
 		
 			$id_nuorodos = isset ( $_POST [ 'id_nuorodos' ] ) ? $_POST [ 'id_nuorodos' ] : -1;
-			$saugoti =  isset ( $_POST [ 'saugoti' ] ) ? $_POST [ 'id_nuorodos' ] : 'nesaugoti';
+			$saugoti =  isset ( $_POST [ 'saugoti' ] ) ? $_POST [ 'saugoti' ] : 'nesaugoti';
 			/*
 				echo $id_nuorodos . ' - ' . $saugoti;
 				print_r ( $_POST ); 
 				die ("---");
 			*/
-			return ( $id_nuorodos == 0 ) && ( $saugoti == 'Saugoti' );
+			return ( $id_nuorodos == '0' ) && ( $saugoti == 'Saugoti' );
 		}
 	
 		public function arAtsiustaPakoreguotaNuoroda() {
@@ -28,11 +28,16 @@
 		public function issaugotiNuoroda() {
 		
 			$nuoroda = $_POST [ 'nuoroda' ];
-			$pav = $_POST [ 'nuoroda' ];
-			$aprasymas = $_POST [ 'nuoroda' ];
-			$zymos = $_POST [ 'nuoroda' ];
-			
+			$pav = $_POST [ 'pav' ];
+			$aprasymas = $_POST [ 'aprasymas' ];
+			$zymos = $_POST [ 'zymos' ];
+			/*
+			echo $nuoroda;
+			die ("---");
+			*/
 			$this -> nuoroda = new Nuoroda( $nuoroda, $pav, $aprasymas, $zymos );
+			
+			$this -> nuoroda -> issaugotiDuomenuBazeje();
 		}
 
 		public function arNurodytaSalinamaNuoroda() {

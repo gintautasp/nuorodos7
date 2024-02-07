@@ -17,20 +17,26 @@
 	
 		public function issaugotiDuomenuBazeje() {
 		
-			$this -> db -> uzklausa ( 
+			$qw_iterpimas_i_nuorodu_lentele = 
 					"
 				INSERT INTO `nuorodos` (
 					`nuoroda`
-					`pav`
-					`aprasymas`
-					`zymos`
+					, `pav`
+					, `aprasymas`
+					, `zymos`
 				) VALUES (
 					'" . $this -> nuoroda. "'
 					, '" . $this -> pav . "'
 					, '" . $this -> aprasymas . "'
 					, '" . $this -> zymos . "'					
 				)
-					"
+					";	
+			/*
+				echo $qw_iterpimas_i_nuorodu_lentele;
+				die ( "---" );
+			*/
+			$this -> db -> uzklausa ( 
+				$qw_iterpimas_i_nuorodu_lentele
 			);
 		}
 	}
