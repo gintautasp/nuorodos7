@@ -25,10 +25,10 @@
 					, `aprasymas`
 					, `zymos`
 				) VALUES (
-					'" . $this -> nuoroda. "'
-					, '" . $this -> pav . "'
-					, '" . $this -> aprasymas . "'
-					, '" . $this -> zymos . "'					
+					'" . mysqli_real_escape_string ( $this -> db -> ercl_db, $this -> nuoroda ). "'
+					, '" . mysqli_real_escape_string ( $this -> db -> ercl_db, $this -> pav ) . "'
+					, '" . mysqli_real_escape_string ( $this -> db -> ercl_db, $this -> aprasymas ) . "'
+					, '" . mysqli_real_escape_string ( $this -> db -> ercl_db, $this -> zymos ) . "'					
 				)
 					";	
 			/*

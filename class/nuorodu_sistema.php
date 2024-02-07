@@ -2,7 +2,7 @@
 
 	class NuoroduSistema extends Controller {
 	
-		public $nuoroda;
+		public $nuoroda, $nuorodos;
 	
 		public function __construct() {
 		}
@@ -50,6 +50,9 @@
 		}
 		
 		public function gautiDuomenis() {
+		
+			$this -> nuorodos = new Nuorodos();
+			$this -> nuorodos -> gautiSarasaIsDuomenuBazes();
 		}
 		
 		public function pateikti() {

@@ -201,17 +201,20 @@
 <section id="nuorodu_sarasas">
 <table>
 	<tr>
-		<td><a title="Virtualus kalendorius, toks pat kaip senovinis sieninis kalendorius šventės, dienos stiliukas, dienos įvykiai, mįslės, žaidimai ir skaičiuotės, giminystės papročiai, vardų reikšmės ir vardadieniai, horoskopai ir tipai, sveikata ir sapnai, poezija ir dainos" href="https://www.day.lt/">Virtualus kalendorius</a></td>
-		<td><input type="button" class="redaguoti_nuoroda" data-id="1" value="redaguoti"></td>
-	</tr>
-	<tr>
-		<td><a href="https://www.w3schools.com/cssref/css_colors_legal.php">CSS Legal Color Values</a></td>
-		<td><input type="button" class="redaguoti_nuoroda" data-id="2" value="redaguoti"></td>		
-	</tr>
-	<tr>
 		<td><a href="https://www.saasworthy.com/list/crm-software">CRM Software</a></td>
 		<td><input type="button" class="redaguoti_nuoroda" data-id="3" value="redaguoti" class="formos_veiksmai"></td>		
-	</tr>	
+	</tr>
+<?php
+	
+	foreach ( $nuorodu_sistema -> nuorodos -> sarasas as $nuoroda ) {
+?>
+	<tr>
+		<td><a href="<?= $nuoroda [ 'nuoroda' ] ?>"><?= $nuoroda [ 'pav' ] ?></a></td>
+		<td><input type="button" class="redaguoti_nuoroda" data-id="<?= $nuoroda [ 'id' ] ?>" value="redaguoti" class="formos_veiksmai"></td>		
+	</tr>
+<?php
+	}
+?>
 </table>
 </section>
 </body>

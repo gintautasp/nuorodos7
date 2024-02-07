@@ -33,7 +33,9 @@
 	
 	include $dir_bendram . 'model_db.class.php';
 	include $dir_bendram . 'model_db_irasas.class.php';
+	include $dir_bendram . 'model_db_sarasas.class.php';	
 	include 'class/nuoroda.php';	
+	include 'class/nuorodos.php';
 	
 	include $dir_bendram . 'controller.class.php';
 	include 'class/nuorodu_sistema.php';
