@@ -2,27 +2,31 @@
 
 	class NuoroduSistema extends Controller {
 	
-		public $nuoroda, $nuorodos;
+		public $nuoroda, $nuorodos, $id_nuorodos, $saugoti;
 	
 		public function __construct() {
 		}
 		
 		public function tikrintiUzklausuDuomenis() {
+		
+			$this -> id_nuorodos = isset ( $_POST [ 'id_nuorodos' ] ) ? $_POST [ 'id_nuorodos' ] : -1;
+			$this -> saugoti =  isset ( $_POST [ 'saugoti' ] ) ? $_POST [ 'saugoti' ] : 'nesaugoti';		
 		}		
 	
 		public function arAtsiustaNaujaNuoroda() {
 		
-			$id_nuorodos = isset ( $_POST [ 'id_nuorodos' ] ) ? $_POST [ 'id_nuorodos' ] : -1;
-			$saugoti =  isset ( $_POST [ 'saugoti' ] ) ? $_POST [ 'saugoti' ] : 'nesaugoti';
+
 			/*
 				echo $id_nuorodos . ' - ' . $saugoti;
 				print_r ( $_POST ); 
 				die ("---");
 			*/
-			return ( $id_nuorodos == '0' ) && ( $saugoti == 'Saugoti' );
+			return ( $this -> id_nuorodos == '0' ) && ( $this -> saugoti == 'Saugoti' );
 		}
 	
 		public function arAtsiustaPakoreguotaNuoroda() {
+		
+			return ( intval ( $this -> id_nuorodos ) >0 ) && ( $this -> saugoti == 'Saugoti' );		
 		}
 		
 		public function issaugotiNuoroda() {
@@ -31,11 +35,12 @@
 			$pav = $_POST [ 'pav' ];
 			$aprasymas = $_POST [ 'aprasymas' ];
 			$zymos = $_POST [ 'zymos' ];
+			$id_nuorodos = $_POST [ 'id_nuorodos' ];
 			/*
 			echo $nuoroda;
 			die ("---");
 			*/
-			$this -> nuoroda = new Nuoroda( $nuoroda, $pav, $aprasymas, $zymos );
+			$this -> nuoroda = new Nuoroda( $nuoroda, $pav, $aprasymas, $zymos, $id_nuorodos );
 			
 			$this -> nuoroda -> issaugotiDuomenuBazeje();
 		}

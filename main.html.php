@@ -125,13 +125,12 @@
 				
 					id = $( this ).data ( 'id' );
 																						// alert ( 'pasirinkta redaguoti ' + id + ' nuoroda' );
-					var jqxhr = $.get( 'nuorodos_informacija.json?i=' +id, function() {
-					
+					var jqxhr = $.get( 'nuorodos_informacija.php?i=' +id, function() {
 																						// alert( 'sujungimas pavyko' );
 					})
 					.done ( function( data ) {
 					
-						nuorodos_informacija = data;
+						nuorodos_informacija = JSON.parse ( data );
 						
 						$( '#nuoroda' ).val ( nuorodos_informacija.nuoroda );
 						$( '#pav' ).val ( nuorodos_informacija.pav );
@@ -140,7 +139,7 @@
 						$( '#id_nuorodos' ).val ( id );
 						nuorodos_duomenu_ivedimo_forma();
 											
-						alert ( JSON.stringify ( nuorodos_informacija ) );
+						// alert ( JSON.stringify ( nuorodos_informacija ) );
 					})
 					.fail ( function() {
 						alert ( 'įvyko klaida' );
@@ -200,10 +199,6 @@
 </section>
 <section id="nuorodu_sarasas">
 <table>
-	<tr>
-		<td><a href="https://www.saasworthy.com/list/crm-software">CRM Software</a></td>
-		<td><input type="button" class="redaguoti_nuoroda" data-id="3" value="redaguoti" class="formos_veiksmai"></td>		
-	</tr>
 <?php
 	
 	foreach ( $nuorodu_sistema -> nuorodos -> sarasas as $nuoroda ) {
