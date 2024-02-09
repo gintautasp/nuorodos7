@@ -92,9 +92,15 @@
 			}
 			
 			$( '#pradzia' ).click(  function() {
-			
+				/*
 				$( '#pilna_paieska' ).hide();
 				$( '#nuorodos_laukeliai' ).hide();
+				*/
+				// location.reload();
+				alert( 'grįžtam į pradžią' );
+				$( '#paieska_pagal' ).val( '' );
+				alert( '#paieska_pagal reikšmė|' + $( '#paieska_pagal' ).val() + '| siunčiam formos #paieska_pilna' + $( '#paieska_pilna' ) + ' duomenis' );
+				$( '#pilnos_paieskos_forma' ).submit();
 			});
 			
 			$( '#paieska_pilna' ).click( function() {
@@ -175,10 +181,10 @@
 </menu>
 </header>
 <section id="pilna_paieska">
-<form method="POST" action="">
+<form  id="pilnos_paieskos_forma" method="POST" action="">
 <label>Paieška</label>
-<input type="text" name="paieska_pagal">
-<input type="submit" id="ieskoti" class="formos_veiksmai" value="Ieškoti">
+<input type="text" name="paieska_pagal" id="paieska_pagal">
+<input type="submit" id="ieskoti"  name="ieskoti" class="formos_veiksmai" value="Ieškoti">
 </form>
 </section>
 <section id="nuorodos_laukeliai">
