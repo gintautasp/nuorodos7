@@ -91,15 +91,16 @@
 				$( '#ieskoti_detaliai' ).hide();
 			}
 			
+			function nuorodos_duomenu_formos_isvalymas() {
+			
+				$( '#nuorodos_duomenys' ).trigger( "reset" );
+				$( '#aprasymas' ).html ( '' );
+				$( '#id_nuorodos' ).val ( '0' );
+			}				
+			
 			$( '#pradzia' ).click(  function() {
-				/*
-				$( '#pilna_paieska' ).hide();
-				$( '#nuorodos_laukeliai' ).hide();
-				*/
-				// location.reload();
-				alert( 'grįžtam į pradžią' );
+
 				$( '#paieska_pagal' ).val( '' );
-				alert( '#paieska_pagal reikšmė|' + $( '#paieska_pagal' ).val() + '| siunčiam formos #paieska_pilna' + $( '#paieska_pilna' ) + ' duomenis' );
 				$( '#pilnos_paieskos_forma' ).submit();
 			});
 			
@@ -115,12 +116,11 @@
 				$( '#saugoti' ).hide();
 				$( '#ieskoti_detaliai' ).show();
 				$( '#pilna_paieska' ).hide();
+				nuorodos_duomenu_formos_isvalymas();
 			});
 			$( '#nauja_nuoroda' ).click( function() {
-			
-				$( '#nuorodos_duomenys' ).trigger( "reset" );
-				$( '#aprasymas' ).html ( '' );
-				$( '#id_nuorodos' ).val ( '0' );				
+
+				nuorodos_duomenu_formos_isvalymas();
 				nuorodos_duomenu_ivedimo_forma();
 				$( '#pilna_paieska' ).hide();
 			});
@@ -183,20 +183,20 @@
 <section id="pilna_paieska">
 <form  id="pilnos_paieskos_forma" method="POST" action="">
 <label>Paieška</label>
-<input type="text" name="paieska_pagal" id="paieska_pagal">
+<input type="text" name="paieska_pagal" id="paieska_pagal" value="<?= $nuorodu_sistema -> nuorodos ->paieskos_tekstas ?>">
 <input type="submit" id="ieskoti"  name="ieskoti" class="formos_veiksmai" value="Ieškoti">
 </form>
 </section>
 <section id="nuorodos_laukeliai">
 <form id="nuorodos_duomenys" method="POST" action="">
 <label>Nuoroda</label>
-<input type="text" name="nuoroda" id="nuoroda">
+<input type="text" name="nuoroda" id="nuoroda" value="<?= ( ! is_null ( $nuorodu_sistema -> nuorodos -> nuoroda_paieskai ) ? $nuorodu_sistema -> nuorodos -> nuoroda_paieskai -> nuoroda : '' ) ?>">
 <label>Pavadinimas</label>
-<input type="text" name="pav" id="pav">
+<input type="text" name="pav" id="pav" value="<?= ( ! is_null ( $nuorodu_sistema -> nuorodos -> nuoroda_paieskai  ) ? $nuorodu_sistema -> nuorodos -> nuoroda_paieskai -> pav : '' ) ?>">
 <label>Žymos</label>
-<input type="text" name="zymos" id="zymos">
+<input type="text" name="zymos" id="zymos" value="<?= ( ! is_null ( $nuorodu_sistema -> nuorodos -> nuoroda_paieskai  ) ? $nuorodu_sistema -> nuorodos -> nuoroda_paieskai -> zymos : '' ) ?>">
 <label>Aprašymas</label>
-<textarea name="aprasymas" id="aprasymas"></textarea>
+<textarea name="aprasymas" id="aprasymas"><?= ( ! is_null ( $nuorodu_sistema -> nuorodos -> nuoroda_paieskai  ) ? $nuorodu_sistema -> nuorodos -> nuoroda_paieskai -> aprasymas : '' ) ?></textarea>
 <input type="hidden" name="id_nuorodos" id="id_nuorodos" value="0">
 <input type="submit" id="ieskoti_detaliai" name="ieskoti_detaliai" class="formos_veiksmai" value="Ieškoti">
 <input type="submit" id="salinti" name="salinti" class="formos_veiksmai" value="Šalinti">

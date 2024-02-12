@@ -2,7 +2,7 @@
 
 	class NuoroduSistema extends Controller {
 	
-		public $nuoroda, $nuorodos, $id_nuorodos, $saugoti, $ieskoti, $paieskos_tekstas = '';
+		public $nuoroda = null, $nuorodos, $id_nuorodos, $saugoti, $ieskoti, $paieskos_tekstas = '';
 	
 		public function __construct() {
 		}
@@ -18,6 +18,20 @@
 			
 				$this -> paieskos_tekstas = $_POST [ 'paieska_pagal' ]; 
 			}
+			
+			$this -> ieskoti_detaliai =  isset ( $_POST [ 'ieskoti_detaliai' ] ) ? $_POST [ 'ieskoti_detaliai' ] : 'neieškoti';
+			
+			if ( $this -> ieskoti_detaliai == 'Ieškoti' ) {
+			
+				$nuoroda = $_POST [ 'nuoroda' ];
+				$pav = $_POST [ 'pav' ];
+				$aprasymas = $_POST [ 'aprasymas' ];
+				$zymos = $_POST [ 'zymos' ];
+	
+				$this -> nuoroda = new Nuoroda( $nuoroda, $pav, $aprasymas, $zymos, '0' );
+				// print_r ( $_POST );
+				// die ( "---" );
+			} 			
 		}		
 	
 		public function arAtsiustaNaujaNuoroda() {
@@ -61,7 +75,7 @@
 		
 		public function gautiDuomenis() {
 		
-			$this -> nuorodos = new Nuorodos ( $this -> paieskos_tekstas );
+			$this -> nuorodos = new Nuorodos ( $this -> paieskos_tekstas, $this -> nuoroda );
 			$this -> nuorodos -> gautiSarasaIsDuomenuBazes();
 		}
 		
