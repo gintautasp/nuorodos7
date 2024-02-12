@@ -54,13 +54,32 @@
 						, '" . mysqli_real_escape_string ( $this -> db -> ercl_db, $this -> zymos ) . "'					
 					)
 						";
-				/*
-					echo $qw_iterpimas_i_nuorodu_lentele;
-					die ( "---" );
-				*/
-				$this -> db -> uzklausa ( 
-					$qw_iterpimas_i_nuorodu_lentele
-				);						
+
+				if ( 
+					$this -> db -> uzklausa ( 
+						$qw_iterpimas_i_nuorodu_lentele
+					)
+				) {
+					if ( $zymos = array_map ( "trim", explode (',' , $this -> zymos ) ) ) {
+
+						$qw_iterpimas_i_zymu_lentele = 
+								"
+							INSERT INTO `zymos` (
+								`zyma`
+							) VALUES (
+								'" . implode ( "'), ('", $zymos ) . "'
+							)
+							ON DUPLICATE KEY UPDATE kiek_kartojasi=kiek_kartojasi+1
+								";
+						/*
+						echo $qw_iterpimas_i_zymu_lentele;
+						die ( "---" );
+						*/							
+						$this -> db -> uzklausa ( 
+							$qw_iterpimas_i_zymu_lentele
+						);
+					}
+				}
 			}
 		}
 	}
