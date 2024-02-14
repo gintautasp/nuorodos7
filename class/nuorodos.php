@@ -4,7 +4,7 @@
 	
 		public $paieskos_tekstas = '', $nuoroda_paieskai = null;
 		
-		public function __construct ( $paieskos_tekstas,  $nuoroda_paieskai ) {
+		public function __construct ( $paieskos_tekstas,  $nuoroda_paieskai = null ) {
 		
 			parent::__construct();		
 		
@@ -92,7 +92,7 @@
 					1
 				" .  $paieskos_nurodymai . "
 					";
-			/*		
+			/*	
 			echo $qw_pasiimti_nuorodas;
 			die( '---' );
 			*/
