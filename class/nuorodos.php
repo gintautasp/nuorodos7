@@ -2,14 +2,15 @@
 	
 	class Nuorodos extends ModelDbSarasas {
 	
-		public $paieskos_tekstas = '', $nuoroda_paieskai = null;
+		public $paieskos_tekstas = '', $nuoroda_paieskai = null, $zyma_paieskai = '';
 		
-		public function __construct ( $paieskos_tekstas,  $nuoroda_paieskai = null ) {
+		public function __construct ( $paieskos_tekstas,  $nuoroda_paieskai = null, $zyma_paieskai = '' ) {
 		
 			parent::__construct();		
 		
 			$this -> paieskos_tekstas = $paieskos_tekstas;
 			$this -> nuoroda_paieskai = $nuoroda_paieskai;
+			$this -> zyma_paieskai = $zyma_paieskai;
 		}
 	
 		public function gautiSarasaIsDuomenuBazes() {
@@ -80,7 +81,17 @@
 						)
 							";
 				}
-			}			
+			}
+
+			if ( $this -> zyma_paieskai != '' ) {
+
+				$paieskos_nurodymai .=
+						"
+					AND (
+						CONCAT( ', ', `nuorodos`.`zymos`, ', ' )   LIKE( '%, " . $this -> zyma_paieskai . ", %' )
+					)
+						";
+			}
 			
 			$qw_pasiimti_nuorodas = 
 					"
@@ -91,11 +102,13 @@
 				WHERE
 					1
 				" .  $paieskos_nurodymai . "
+--				LIMIT
+--					0,3
 					";
-			/*	
+/*				
 			echo $qw_pasiimti_nuorodas;
 			die( '---' );
-			*/
+*/			
 			$res = $this -> db -> uzklausa ( $qw_pasiimti_nuorodas );
 			
 			while ( $row = mysqli_fetch_assoc ( $res ) ) {

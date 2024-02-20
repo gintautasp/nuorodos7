@@ -26,6 +26,7 @@
 			nuorodų sistema pasiimk pradinį nuorodų sarašą
 	*/
 	$dir_bendram = realpath ( __DIR__ . '/../bendram' ) . '/';
+	$svetaine  = '/nuorodos7/';
 	
 	include $dir_bendram . 'duomenu_baze.class.php';
 	
@@ -33,7 +34,9 @@
 	
 	include $dir_bendram . 'model_db.class.php';
 	include $dir_bendram . 'model_db_irasas.class.php';
-	include $dir_bendram . 'model_db_sarasas.class.php';	
+	include $dir_bendram . 'model_db_sarasas.class.php';
+
+	include 'class/zymos.php';
 	include 'class/nuoroda.php';	
 	include 'class/nuorodos.php';
 	

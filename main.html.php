@@ -118,6 +118,14 @@
 				$( '#pilna_paieska' ).hide();
 				nuorodos_duomenu_formos_isvalymas();
 			});
+			
+			$( '#salinti' ).click( function() {
+			
+				var result = confirm( "Ar tikrai norite pašalinti nuorodą?", "Taip", "Ne" );
+				
+				return result;
+			});
+			
 			$( '#nauja_nuoroda' ).click( function() {
 
 				nuorodos_duomenu_formos_isvalymas();
@@ -159,11 +167,18 @@
 <body>
 <header>
 <aside>
-	<h1>Žymos</h1>
-	<a href="?tag=programavimas">programavimas</a>
-	, <a href="?tag=filmai">filmai</a>
-	, <a href="?tag=rinkodara">rinkodara</a>
-	, <a href="?tag=prekės">prekės</a>
+	<a style="float: right" href="<?= $svetaine ?>">be žymų</a>
+	<h1 style="width: 80%">Žymos</h1>
+<?php	
+		$kablelis = '';
+
+		foreach ( $nuorodu_sistema -> zymos -> sarasas as $zyma ) {
+		
+?><?= $kablelis ?><a href="?tag=<?= $zyma [ 'zyma' ] ?>"><?= $zyma [ 'zyma' ] . ' (' . $zyma [ 'kiek_kartojasi' ] . ')' ?></a><?php
+
+			$kablelis = ', ';
+		}
+?>
 </aside>
 <menu>
 	<div class="menu_item">
