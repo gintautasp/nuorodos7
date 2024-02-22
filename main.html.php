@@ -76,9 +76,34 @@
 			color: rgb(0,0,0);			
 		}
 	</style>
-	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">	
+	<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>	
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script>
 		$( document ).ready( function() {
+		
+
+			// stabdyti_forma = false;		
+		
+			patvirtinimo_dialogas = $( "#dialog-confirm" ).dialog({
+				resizable: false,
+				height: "auto",
+				width: 400,
+				modal: true,
+				 autoOpen: false,
+				buttons: {
+					"Pašalinti nuorodą": function() {
+						
+						$( "#nuorodos_duomenys" ).submit();
+						$( this ).dialog( "close" );
+					},
+					"Atšaukti": function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+
 		
 			$( '#nuorodos_laukeliai' ).hide();
 			$( '#pilna_paieska' ).hide();
@@ -119,11 +144,13 @@
 				nuorodos_duomenu_formos_isvalymas();
 			});
 			
-			$( '#salinti' ).click( function() {
-			
-				var result = confirm( "Ar tikrai norite pašalinti nuorodą?", "Taip", "Ne" );
+			$( '#salinti' ).click( function( e ) {
+		
+				$( "#salinti_buves_submit" ).val ( 'Šalinti' );
+				// var result = confirm( "Ar tikrai norite pašalinti nuorodą?", "Taip", "Ne" );
+				patvirtinimo_dialogas.dialog( 'open' );
 				
-				return result;
+				return false;
 			});
 			
 			$( '#nauja_nuoroda' ).click( function() {
@@ -132,7 +159,12 @@
 				nuorodos_duomenu_ivedimo_forma();
 				$( '#pilna_paieska' ).hide();
 			});
-
+/*			
+			$( "#nuorodos_duomenys" ).submit ( function(e) {
+				
+				return  ! stabdyti_forma;
+			});
+*/
 			$( '.redaguoti_nuoroda' ).each ( function() {
 			
 				$( this ).click ( function() {
@@ -214,7 +246,8 @@
 <textarea name="aprasymas" id="aprasymas"><?= ( ! is_null ( $nuorodu_sistema -> nuorodos -> nuoroda_paieskai  ) ? $nuorodu_sistema -> nuorodos -> nuoroda_paieskai -> aprasymas : '' ) ?></textarea>
 <input type="hidden" name="id_nuorodos" id="id_nuorodos" value="0">
 <input type="submit" id="ieskoti_detaliai" name="ieskoti_detaliai" class="formos_veiksmai" value="Ieškoti">
-<input type="submit" id="salinti" name="salinti" class="formos_veiksmai" value="Šalinti">
+<input type="button" id="salinti" class="formos_veiksmai" value="Šalinti">
+<input type="hidden" id="salinti_buves_submit" name="salinti" value="Nešalinti">
 <input type="submit" id="saugoti" name="saugoti" class="formos_veiksmai" value="Saugoti">
 </form>
 </section>
@@ -233,5 +266,8 @@
 ?>
 </table>
 </section>
+<div id="dialog-confirm" title="Ar pašalinti šią nuorodą?">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Pasirinkta nuoroda bus pašalinta. Ar tikrai norite tai atlikti?</p>
+</div>
 </body>
 </html>
